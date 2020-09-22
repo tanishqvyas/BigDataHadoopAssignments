@@ -260,3 +260,87 @@ You can access Hadoop on localhost on the following ports
 * YARN Manager - http://localhost:8088
 
 Remember to stop all processes using ```./stop-all.sh``` when you are done with your work.
+
+
+## Running a Job
+Start the hdfs as mentioned in above commands.
+
+In order to run a job create the following directory structure
+
+```
++
+|--- hadoop-3.2.1
+|     |
+|     |--- task1
+|     |     |
+|     |     |--- data
+|     |     |     |--- plane.ndjson
+|     |     |
+|     |     |--- code
+|     |     |     |
+|     |     |     |--- mapper.py
+|     |     |     |--- reducer.py
+|
++
+```
+
+Now, change your directory to **code**
+```
+cd /home/hadoop/hadoop-3.2.1/task1/code
+```
+
+Now, run the following command in order to create a directory on hdfs to store input file
+
+```
+hdfs dfs -mkdir input/task1
+```
+
+Now, we put the corresponding ndjson file in hdfs
+
+```
+hdfs dfs -put ../data/plane_carriers.ndjson input/task1
+```
+
+Check if the file was succesfully transferred
+
+```
+hdfs dfs -ls input/task1
+```
+
+Now, we will run the MR job but before that we need to take care of the EOL character encoding issue (precaution)
+
+First install dos2unix
+
+```
+sudo apt install dos2unix
+```
+
+Now we run the dos2unix command to convert mapper.py and reducer.py  to unix format
+
+```
+dos2unix mapper.py reducer.py
+```
+Now, we set the proper file permissions
+
+```
+chmod +755 mapper.py reducer.py
+```
+
+Now, keep in mind that in the output directory the folder iscreated automatically by the hdfs while running the MR job. 
+run the following command to execute the MR job
+
+```
+hadoop jar /home/hadoop/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input input/task1 -output output/task1
+```
+
+Now, in order to check the output type
+
+```
+hdfs dfs -cat output/task1/*
+```
+
+That concludes running a simple MR Job.
+
+
+
+
