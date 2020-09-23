@@ -253,6 +253,17 @@ You can alternatively start the nodes and then the YARN resource manager manuall
 
 Type ```jps``` to find all the Java Processes. You should see 6 total processes, including the Jps process.
 
+Now, type the following commands
+
+```
+cd /home/hadoop/hadoop-3.2.1/bin/
+hdfs dfs -mkdir /user
+hdfs dfs -mkdir /user/hadoop
+hdfs dfs -mkdir /user/hadoop/input
+hdfs dfs -mkdir /user/hadoop/output
+```
+
+
 ## Access Hadoop from Browser
 You can access Hadoop on localhost on the following ports
 * NameNode - http://localhost:9870
