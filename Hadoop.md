@@ -123,6 +123,7 @@ sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 Scroll down until you find the commented line ```#export JAVA_HOME=```. Uncomment the line and replace the path with your Java path. The final line should look like this
 ```sh
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export HADOOP_CLASSPATH=/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar
 ```
 
 Save and exit the file as shown previously.
