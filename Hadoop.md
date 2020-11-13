@@ -58,8 +58,8 @@ Type ```exit``` to quit SSH.
 
 Use any mirror link to get the download url. Download and extract hadoop using the following commands
 ```sh
-wget https://downloads.apache.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
-tar xzf hadoop-3.2.1.tar.gz
+sudo wget https://downloads.apache.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
+sudo tar xzf hadoop-3.2.1.tar.gz
 ```
 
 ## Single Node Deployment
